@@ -1,0 +1,25 @@
+% 20180120T2131 Leonard Michlmayr
+
+%% Einige Filter für die Einträge im Literaturverzeichnis
+\defbibfilter{online}{( type=online or subtype=online )}
+\defbibfilter{interview}{type=interview or subtype=interview}
+\defbibfilter{onlinetext}{( type=online or subtype=online and not ( type=video
+  or type=audio ) )}
+\defbibfilter{offline}{not ( type=online or subtype=online )}
+\defbibfilter{print}{not ( type=online or subtype=online or type=video or
+  type=audio or type=interview or subtype=interview )}
+\defbibfilter{offlinevideo}{type=video and not subtype=online}
+\defbibfilter{offlineaudio}{type=video and not subtype=online}
+\defbibfilter{nurAusSekundaerliteratur}{category=quotee and not category=primary}
+\defbibfilter{nichtNurAusSekundaerliteratur}{category=quoter or category=primary}
+
+% TODO: die Untergliederung des Literaturverzeichnisses den eigenen
+% Bedürfnissen anpassen.
+\printbibheading[heading=bibintoc,title=Literaturverzeichnis]\label{Lit}
+\printshorthands[heading=subbibintoc]
+\printbibliography[heading=subbibintoc,title={Print-Quellen},filter=print,filter=nichtNurAusSekundaerliteratur]
+\printbibliography[heading=subbibintoc,title={Audio-Quellen},filter=offlineaudio,filter=nichtNurAusSekundaerliteratur]
+\printbibliography[heading=subbibintoc,title={Video-Quellen},filter=offlinevideo,filter=nichtNurAusSekundaerliteratur]
+\printbibliography[heading=subbibintoc,title={Internet-Quellen},filter=online,filter=nichtNurAusSekundaerliteratur]
+\printbibliography[heading=subbibintoc,title={Sekundärzitate},filter=nurAusSekundaerliteratur]
+\printbibliography[heading=subbibintoc,title={Interviews},filter=interview]
