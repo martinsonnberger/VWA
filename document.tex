@@ -10,17 +10,24 @@
 	bookstyle=false,
 	widowlines=3]{vwa}
 
+%% Chapter Style
+\input{kapitel-style}
+
+
 %% Trick texlipse to use biber instead of bibtex
 \iffalse
 \usepackage[error,backend=biber]{biblatex}
 \fi
 %%
 
-% TODO: lade Zusatzpakete
 \usepackage{textcomp}
 \usepackage[output-decimal-marker={,}]{siunitx}
 \usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
+% TODO: Link visit date aktualisieren
 \addbibresource{quellen.bib}
 \graphicspath{{img/}}
 
@@ -62,7 +69,7 @@
 
 % Das Literaturverzeichnis
 \input{literatur}
-
+\listoftables
 
 \backmatter
 
