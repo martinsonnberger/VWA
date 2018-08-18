@@ -26,6 +26,7 @@
 \usepackage[output-decimal-marker={,}]{siunitx}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{acronym}
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
@@ -67,11 +68,14 @@
 \mainmatter
 
 \include{kapitel-1}
+\include{kapitel-2}
 
 
 \input{literatur}
 \listoffigures
 \listoftables
+\appendix
+\input{appendix}
 
 \backmatter
 

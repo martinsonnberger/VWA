@@ -71,18 +71,18 @@ in der Praeambel angeben!}} \newcommand{\DLS@PDFtitle}{\@Titel} % Override when 
 					\hsize=0.7\textwidth\parindent=0pt\parskip=0pt plus 1pt
 					{\bfseries
 						\fontsize{14}{18}\selectfont S\fontsize{12}{18}\selectfont CHULVEREIN
-						\fontsize{14}{18}\selectfont D\fontsize{12}{18}\selectfont E 
+						\fontsize{14}{18}\selectfont D\fontsize{12}{18}\selectfont E
 						\fontsize{14}{18}\selectfont L\fontsize{12}{18}\selectfont\kern-1pt A
 						\fontsize{14}{18}\selectfont S\fontsize{12}{18}\selectfont\kern-1pt ALLE}
-					
+
 					Gymnasium, Realgymnasium und
-					
+
 					Oberstufenrealgymnasium mit ÖR
-			
+
 					\vskip 3pt plus 3pt
-			
+
 					\fontsize{9}{11.5}\selectfont 1210 Wien, Anton-Böck-Gasse 37
-					
+
 					Tel.: +43/1/29125-760   Fax.: +43/1/29125-763}%
 				\hspace{3pt}%
 				\usebox{\logo}%
