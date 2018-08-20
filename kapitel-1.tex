@@ -17,9 +17,12 @@ Selbstfahrende Autos stellen eine neue Klasse an von Computern kontrollierten Sy
 \vgl[130]{Surden}
 
 \subsection{Autonomiestufen}
-Der Grad der Automatisierung eines Fahrzeugs kann in verschiedene Stufen eingeteilt werden, welche Autonomiestufen oder Level genannt werden. Eine erste Einteilung in fünf Stufen erfolgte 2013 in den USA von der \ac{NHTSA}. Im Jahr 2014 veröffentlichete die \ac{SAE} zum ersten Mal den \textit{J 3016} Standard, welcher eine Überarbeitung der ursprünglichen Einteilung der \ac{NHTSA} darstellt. Der Hauptgrund für die Adaptierung war die Standardisierung verschiedener Skalen. Der größte Unterschied besteht in einer zusätzlichen, sechsten Stufe, die für die Einteilung verwendet wird. Der \textit{J 3016} Standard ist die heute am weitesten verbreitete Einteilung, auch das Bundesministerium für Verkehr, Innovation und Technologie verwendet ihn als Grundlage. 
+Der Grad der Automatisierung eines Fahrzeugs kann in verschiedene Stufen eingeteilt werden, welche Autonomiestufen oder Level genannt werden. Eine erste Einteilung in fünf Stufen erfolgte 2013 in den USA von der \ac{NHTSA}. Im Jahr 2014 veröffentlichete die \ac{SAE} zum ersten Mal den \textit{J3016} Standard, welcher eine Überarbeitung der ursprünglichen Einteilung der \ac{NHTSA} darstellt. Der Hauptgrund für die Adaptierung war die Standardisierung verschiedener Skalen. Der größte Unterschied besteht in einer zusätzlichen, sechsten Stufe, die für die Einteilung verwendet wird. \vgl[11-13]{Kaufleitner} Der \textit{J3016} Standard ist die heute am weitesten verbreitete Einteilung, auch das Bundesministerium für Verkehr, Innovation und Technologie verwendet ihn als Grundlage. (H. Atasayar, private Kommunikation, 20. Aug. 2018)
+%TODO: fragen wegen privater kommunikation
 
 Am Beginn der Skala steht Level 0, was bedeutet, dass sämtliche Fahraufgaben durch den Menschen erfolgen. Level 5 hingegen steht für eine vollständige Automation, bei der jegliche, für eine Fahrt erforderlichen Aufgaben, durch den Computer ausgeführt werden. Bei Begriffen wie \enq{selbstfahrend}, \enq{fahrerlos} oder auch \enq{autonom}, ist meist von einer vollständigen Automation auf Level 5 die Rede.
+
+In der Zusammenfassung der Autonomiestufen (\ref{levels}) ist oft von der \textit{Dynamischen Fahraufgabe} die Rede, die \ac{SAE} definiert sie folgendermaßen: \zit[6]{sae-j3016}{All of the real-time operational and tactical functions required to operate a vehicle in on-road traffic, excluding the strategic functions such as trip scheduling and selection of destinations and waypoints \elp{}}
 
 %TODO: Fragen ob das stimmt
 \nocite{wiki-levels}
@@ -39,6 +42,20 @@ Bei einem hohen Automatisierungsgrad wird die Technologie verwendet, um die folg
 
 Einem autonomen Fahrzeug muss es möglich sein, diese Fragen unter Berücksichtung von Verkehrszeichen, Ampeln und Straßenmarkierungen, zu beantworten. Außerdem muss es in einem Raum voll mit Objekten wie Fahrzeugen, Fußgängern, Radfahrern und Tieren, sicher navigieren können. Um diese Aufgaben erfolgreich zu bewältigen, ist ein Zusammenspiel von \textbf{Hardware} und \textbf{Software} notwendig.
 
-\subsection{Hardware}
+\subsection{Sensoren}
+In autonomen Fahrzeugen sind zahlreiche Sensoren installiert, die dazu beitragen, alle drei oben genannten Fragen, zu beantworten. Sensoren sind Komponenten, die eine physikalische Größe der Umgebung oder des Fahrzeuges selbst in ein elektrisches Signal umwandeln, welches an den Fahrzeugcomputer weitergeleitet wird, um es dort weiterzuverarbeiten. \vgl{sensor-def} In autonomen Fahrzeugen wird meist ein \acs{Radar} (\acl{Radar}) verwendet, um Hindernisse zu erkennen, sowie deren Entfernung und Geschwindigkeit zu bestimmen. Dazu werden elektromagentische Wellen ausgesendet. Treffen sie auf ein Objekt, werden die Wellen reflektiert. Mithilfe des gemessenen Zeitunterschiedes können nun Entfernung und Geschwindigkeit des Obejektes berechnet werden. \vgl{sensors-thedrive}
 
-\subsection{Software}
+Ein weiterer, bereits in heutigen, konventionellen Fahrzeugen eingesetzter Sensor, ist der Ultraschallsensor. Aufgrund seiner Beschränkungen in Hinsicht auf Reichweite und Maximalgeschwindigkeit ist er jedoch nicht so vielseitig anwendbar wie ein \acs{Radar}. Wegen seiner Kompaktheit sowie kostengünstigen Herstellung ist er jedoch besonders bei Einparksystemen beliebt.
+
+Mithilfe von \acs{Lidar}-Sensoren (\acl{Lidar}), ist es möglich, nicht nur Objekte an sich, sondern auch um welche Art von Objekt es sich handelt (anderes Fahrzeug, Fußgänger, Ampel, etc.), zu erkennen. Bei einem \acs{Lidar} werden schwache, unsichtbare Laserstrahlen anstatt elektromagentischer Wellen ausgesendet, um auf dem selben Prinzip wie bei \acs{Radar} und Ultraschall Hindernisse zu indentifizieren. \acs{Lidar}-Sensoren werden auch zur Positionsbestimmung autonomer Fahrzeuge verwendet. (Siehe \ref{kapitel-2})
+
+\subsection{Annotierte digitale Karten}
+
+Autonome Fahrzeuge sind neben Sensoren auch mit Kartenmaterial ausgestattet, welches speziell für autonomes Fahren im Vorhinein konstruiert wird. Einerseits sind diese Karten mit geographischen Informationen zu Straßenlayout und markanten Punkten (Längen- und Breitengrade), andererseits mit zahlreichen Zusatzinformationen ausgestatten, die insbesondere für autonomes Fahren benötigt werden. \vgl[138]{Surden}
+
+Annotierte digitale Karten beinhalten ein detailliertes Bild der Straßen, welches meist durch einen dreidimensionalen Laser-Scan hergestellt wird. Dieser Scan wird mit speziellen Vermessungsfahzeugen durchgeführt, die das Straßennetz abfahren, in dem sich autonome Fahrzeuge später aufhalten werden.
+Weiters beinhalten sie manuell hinzugefügte Information über lokale Gegebenheiten wie Ampelanlagen, Hauseinfahrten oder Straßenmarkierungen. \vgl[139]{Surden}
+
+Durch diese Art von Kartenmaterial wird autonomes Fahren deutlich effizienter, da Fahrzeuge sich bereits im Vorhinein auf Situationen einstellen können und dementsprechend rechtzeitig reagieren. Durch den Vergleich mit Echtzeitinformation von Kameras und \acs{Lidar}-Sensoren am Fahrzeug, wird die Fähigkeit, Straßenschilder oder Ampeln zu erkennen, deutlich erhöht. \vgl[140]{Surden}
+
+Sollte der Fall eintreten, dass das vorab gespeicherte Kartenmaterial nicht mit den Sensordaten übereinstimmt, können autonome Fahrzeuge auch allein mit Sensoren sicher und akurat durch den Verkehr steuern. Außerdem ist es möglich, das Kartenmaterial dynamisch den veränderten Gegebenheiten anzupassen. Wird beispielsweise an einer Kreuzung eine neue Ampelanlage installiert und 100 Fahrzeuge melden dies einem zentralen Kartenserver, so kann die Karte automatisch angepasst werden, um wieder dem aktuellen Stand zu entsprechen. \vgl[140]{Surden}
