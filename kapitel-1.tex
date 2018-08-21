@@ -4,6 +4,7 @@ Versucht man den Begriff \enq{Autonomes Fahren} zu definieren, stößt man unwei
 \vgl[2-3]{Maurer}
 Durch die Einführung von zahlreichen Fahrerassistenzsystemen und letzendlich des autonomen Fahrens wird dem Automobil seine ursprünglich gedachte Autonomie nicht nur wieder zurückgegeben, sondern auch um ein Vielfaches erweitert.
 
+
 \section{Begriffsdefintion}
 
 \dzit{Definition}{Autonomes Fahren bedeutet das selbständige, zielgerichtete Fahren eines Fahrzeugs im realen Verkehr, ohne Eingriff des Fahrers.}
@@ -29,7 +30,7 @@ In der Zusammenfassung der Autonomiestufen (\ref{levels}) ist oft von der \texti
 \input{levels}
 
 
-\section{Funktionsweise}
+\section{Technologie von autonomen Fahrzeugen}
 
 %TODO: Sekundärzitat: Quelle finden!
 Bei einem hohen Automatisierungsgrad wird die Technologie verwendet, um die folgenden drei primären Fragen zu beantworten:
@@ -59,3 +60,17 @@ Weiters beinhalten sie manuell hinzugefügte Information über lokale Gegebenhei
 Durch diese Art von Kartenmaterial wird autonomes Fahren deutlich effizienter, da Fahrzeuge sich bereits im Vorhinein auf Situationen einstellen können und dementsprechend rechtzeitig reagieren. Durch den Vergleich mit Echtzeitinformation von Kameras und \acs{Lidar}-Sensoren am Fahrzeug, wird die Fähigkeit, Straßenschilder oder Ampeln zu erkennen, deutlich erhöht. \vgl[140]{Surden}
 
 Sollte der Fall eintreten, dass das vorab gespeicherte Kartenmaterial nicht mit den Sensordaten übereinstimmt, können autonome Fahrzeuge auch allein mit Sensoren sicher und akurat durch den Verkehr steuern. Außerdem ist es möglich, das Kartenmaterial dynamisch den veränderten Gegebenheiten anzupassen. Wird beispielsweise an einer Kreuzung eine neue Ampelanlage installiert und 100 Fahrzeuge melden dies einem zentralen Kartenserver, so kann die Karte automatisch angepasst werden, um wieder dem aktuellen Stand zu entsprechen. \vgl[140]{Surden}
+
+\subsection{Koordinierendes Computersystem}
+
+Das koordinierende Computersystem ist neben den Sensoren und annotierten digitalen Karten die dritte ausschlagebende Technologie, um autonomes Fahren zu ermöglichen. Das System kombiniert sämtliche Sensordaten und vergleicht sie mit den Kartendaten, um feststellen zu können, ob es sicher, erwünscht und legal ist, das Fahrzeug an eine neue Position zu bewegen. Trifft dies zu, steuert das System das Fahrzeug zu dieser Position.
+\vgl[141]{Surden}
+
+
+\section{Prozess des autonomen Fahrens}
+
+Wie in vielen Anwendungsfällen in der Robotik, wird auch beim autonomen Fahren der dreistufige \textit{sense-plan-act}-Prozess verwendet. \vgl{Anderson} In der ersten Stufe, der \textit{Erkennungsphase}, werden sämtliche Sensoren am Fahrzeug verwendet, um festzustellen, wo sich das Fahrzeug befindet und von welchen Hindernissen es umgeben ist. In der \textit{Planungsphase} werden diese Informationen an das koordinierende Computersystem weitergeleitet, welches die Daten analysiert. Der Computer erstellt ein Modell der Umgebung inklusive aller Objekte die das Fahrzeug umgeben. Komplexe Algorithmen entscheiden nun anhand von eingegebenem Ziel, Straßenmarkierungen, Verkehrszeichen und Hindernissen, wo sich das Fahrzeug als nächstes hinbewegen soll. In der \textit{Ausführungsphase} steuert der Computer schließlich das Fahrzeug, indem die Fahrzeugtechnik (Beschleunigung, Bremsen, Lenkung) elektronisch angesteuert wird.
+\vgl[141]{Surden}
+
+Zudem läuft dieser Prozess in einem ständigen Kreislauf ab, welcher sich mehrere tausend Male pro Sekunde wiederholt, was dazu führt, dass ein autonomes Fahrzeug beinahe ohne Verzögerung auf Veränderungen in der Umwelt reagieren kann. Ein Fahrzeug hat beispielsweise entschieden, dass es sicher ist, einen Spurwechsel durchzuführen. Plötzlich nähert sich ein Radfahrer, welcher vorher nicht erfasst wurde. Durch den sich ständig wiederholenden \textit{sense-plan-act}-Prozess kann das Fahrzeug seinen ursprünglichen Plan entsprechend anpassen und den Spurwechsel abbrechen. Der Fakt, dass der Prozess des Erkennens und Anpassens, sich in einem ständigen Kreislauf befindet, führt dazu, dass sich autonome Fahrzeuge sicher im Straßenverkehr bewegen können.
+\vgl[142]{Surden}
