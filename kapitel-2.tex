@@ -1,2 +1,39 @@
-\chapter{Positionsbestimmung}
-\label{kapitel-2}
+\chapter{Positionsbestimmung}\label{kapitel-2}
+
+Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich selbst in unterschiedlichsten Verkehrssituationen auf wenige \si{\centi\meter} genau zu lokalisieren. Gerade im Verkehr ist eine besonders hohe Genauigkeit gefragt, eine ungefähre Standortbestimmung ist für autonome Fahrzeuge definitiv nicht ausreichend.
+
+
+\section{Satellitenortung}
+
+Das wohl bekannteste heute eingesetzte Ortungssystem, welches auf Satellitenortung basiert, ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale auf \SI{1575.42}{\mega\hertz} und \SI{1227.60}{\mega\hertz} aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten.
+\vgl{Winner}
+
+Das russische GLONASS und das europäische Galileo-Projekt sind zwei weitere satellitenbasierte Ortungssysteme. Ein wichtiger Vorteil dieser beiden Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
+\vgl{Hilty}
+
+\subsection{Berechnung des Standortes}
+
+Die Positionsbestimmung erfolgt bei \ac{GPS} durch Entfernungsmessung zu mehreren Satelliten. Ein Satellit ist nicht ausreichend, da sich der Empfänger überall auf der Oberfläche einer Kugel befinden kann, deren Mittelpunkt der Standort des Satelliten und Radius die Entfernung zwischen Sender und Empfänger ist. Um alle drei Koordinaten (x, y, z) berechnen zu können, sind Entfernungen zu drei Satelliten notwending, um die erforderlichen Gleichungen aufstellen zu können.
+
+Die Entfernungsmessung geschieht durch Messung der Laufzeit des Signals (\dH die Zeit, die das Signal für die Wegstrecke zwischen Sender und Empfänger benötigt). Das Signal breitet sich mit Lichtgeschwindigkeit aus, dadurch lässt sich die Distanz zum Satelliten berechnen.
+
+Allerdings ist dem Empfänger zunächst nicht bekannt, wann das Signal den Sender verlassen hat. Da Sender und Empfänger bei \ac{GPS} nicht direkt miteinander kommunizieren können, spricht man von einer Einweg-Entfernungsmessung. Der Satellit schickt die Sendezeit des Siganls als Code mit, nämlich als \ac{GPS}-Systemzeit im Moment der Sendung. Da der Empfänger allerdings nicht mit der \ac{GPS}-Systemzeit synchronisiert ist, entsteht eine zusätzliche vierte Unbekannte, wodurch eine vierte Gleichung und somit ein vierter Satellit notwendig ist.
+
+Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. Die Gleichungen ergeben sich durch Gleichsetzung der vier Entfernungen in Koordinaten und den Distanzen aus der Laufzeitmessung. Um keine Wurzeln zu benötigen, schreibt man die Gleichungen in Quadratform.
+\vgl{wiki-gps}
+
+\begin{eqnarray}
+  (x_1 - x_0)^2 + (y_1 - y_0)^2 + (z_1 - z_0)^2 = [c(t_1 - t_0)]^2 \\
+  (x_2 - x_0)^2 + (y_2 - y_0)^2 + (z_2 - z_0)^2 = [c(t_2 - t_0)]^2 \\
+  (x_3 - x_0)^2 + (y_3 - y_0)^2 + (z_3 - z_0)^2 = [c(t_3 - t_0)]^2 \\
+  (x_4 - x_0)^2 + (y_4 - y_0)^2 + (z_4 - z_0)^2 = [c(t_4 - t_0)]^2
+\end{eqnarray}
+
+Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\).
+
+\subsection{Verwendung in autonomen Fahrzeugen}
+
+Für autonome Fahrzeuge ist die \ac{GPS}-Ortung nur von relativ geringer Bedeutung, da deren Genauigkeit nicht für autonomes Fahren ausreichend ist. \ac{GPS} wird bei autonomen Fahrzeugen lediglich für eine erste grobe Schätzung des Standorts verwendet. Für eine genauere Ortung kommen \acs{Lidar}-Sensoren sowie \enq{Map-Matching} zum Einsatz.
+
+
+\section{Lidar-Technik}
