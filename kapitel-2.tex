@@ -5,7 +5,7 @@ Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich sel
 
 \section{Satellitenortung}
 
-Das wohl bekannteste heute eingesetzte Ortungssystem, welches auf Satellitenortung basiert, ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale auf \SI{1575.42}{\mega\hertz} und \SI{1227.60}{\mega\hertz} aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten.
+Das wohl bekannteste heute eingesetzte Ortungssystem, welches auf Satellitenortung basiert, ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale auf aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit bei einer \ac{GPS}-Ortung liegt bei ungefähr 5 \si{\meter}. 
 \vgl{Winner}
 
 Das russische GLONASS und das europäische Galileo-Projekt sind zwei weitere satellitenbasierte Ortungssysteme. Ein wichtiger Vorteil dieser beiden Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
@@ -22,14 +22,22 @@ Allerdings ist dem Empfänger zunächst nicht bekannt, wann das Signal den Sende
 Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. Die Gleichungen ergeben sich durch Gleichsetzung der vier Entfernungen in Koordinaten und den Distanzen aus der Laufzeitmessung. Um keine Wurzeln zu benötigen, schreibt man die Gleichungen in Quadratform.
 \vgl{wiki-gps}
 
-\begin{eqnarray}
+\begin{align}
   (x_1 - x_0)^2 + (y_1 - y_0)^2 + (z_1 - z_0)^2 = [c(t_1 - t_0)]^2 \\
   (x_2 - x_0)^2 + (y_2 - y_0)^2 + (z_2 - z_0)^2 = [c(t_2 - t_0)]^2 \\
   (x_3 - x_0)^2 + (y_3 - y_0)^2 + (z_3 - z_0)^2 = [c(t_3 - t_0)]^2 \\
   (x_4 - x_0)^2 + (y_4 - y_0)^2 + (z_4 - z_0)^2 = [c(t_4 - t_0)]^2
-\end{eqnarray}
+\end{align}
 
-Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\).
+Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\). Diese kartesischen Koordinaten lassen sich mithilfe folgender Formeln in Koordinaten mit Längen- und Breitengrad umwandeln:
+
+\begin{align}
+  Breite &= \arcsin(\frac{z}{R}) \\
+  Länge &= \arctantwo(y, x)
+\end{align}
+
+R = Erdradius
+
 
 \subsection{Verwendung in autonomen Fahrzeugen}
 
