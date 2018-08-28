@@ -49,24 +49,43 @@ Für autonome Fahrzeuge ist die \ac{GPS}-Ortung nur von relativ geringer Bedeutu
 \begin{equation}
   Distanz = \frac{Laufzeit \cdot Lichtgeschwindigkeit}{2}
 \end{equation}
-\vspace{\baselineskip}
+\vspace{0.3cm}
 
 Zur Positionsbestimmung werden \acs{Lidar}-Sensoren einem \acs{Radar} vorgezogen, da sie eine höhere Auflösung und damit detailliertere Abbildungen der Umgebung erstellt werden können, wie in \ref{lidar-radar} zu sehen ist.
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{lidar-radar.png}
-  \captionbelow[Vergleich Lidar und Radar Umgebungsscan. Quelle: \fullcite{lidar-radar})]{Vergleich Lidar und Radar Umgebungsscan (\cite{lidar-radar})}
+  \captionbelow[Vergleich Lidar und Radar Umgebungsscan. Quelle: \fullcite{lidar-radar})]{Vergleich Lidar und Radar Umgebungsscan. (\cite{lidar-radar})}
   \label{lidar-radar}
 \end{figure}
 
-In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alphabet, sind drei \acs{Lidar}-Scanner verbaut. Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen. \vgl{waymo} In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt:
+In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alphabet, sind drei \acs{Lidar}-Scanner verbaut auf dem Dach verbaut (siehe \ref{waymo-lidar}). Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen. \vgl{waymo} In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt:
 \begin{enumerate}
   \item{Erkennung und Bestimmung von Objekten um das Fahrzeug}
   \item{Präzise Positionsbestimmung innerhalb der Fahrspur}
 \end{enumerate}
 \vgl{Surden}
 
-Um das Fahrzeug präzise lokalisieren zu können, scannen \acs{Lidar}-Sensoren Straßenmarkierungen, indem sie die Straßenoberfläche auf unterschiedliche Reflexionsvermögen (aufgrund weißer Markierungen) untersuchen und speichern die Daten in einer Datei namens \acs{BLMR} (\acl{BLMR}). In der \acs{BLMR} werden stets die Leit- und Randliniendaten der letzten \SI{240}{\meter} gespeichert, diese werden laufend mit den zuvor erstellten annotierten digitalen Karten (siehe \ref{maps}) abgeglichen, wodurch der Standort bestimmt werden kann. \vgl{self-localization}
+\begin{figure}\centering
+  \includegraphics[width=\textwidth]{waymo-lidar.png}
+  \captionbelow[Lidar-Scanner auf einem autonomen Fahrzeug von Waymo. Quelle: \fullcite{waymo})]{Lidar-Scanner auf einem autonomen Fahrzeug von Waymo. (\cite{waymo})}
+  \label{waymo-lidar}
+\end{figure}
+
+Eine Möglichkeit, um mittles \acs{Lidar}-Scannern, die Position von Fahrzeugen bestimmen zu können, ist mittels Partikel-Filtern (auch Monte-Carlo-Lokalisierung). Hierfür wird ebenfalls eine annotierte digitale Karte (siehe \ref{maps}) benötigt.
+
+\begin{enumerate}
+  \item{Zuerst werden auf der Karte eine hohe Anzahl an sogenannten Partikeln verteilt. Jeder Partikel stellt eine mögliche Position des Fahrzeugs dar. Anfangs erhalten alle Partikel dieselbe Gewichtung (da die Position des Fahrzeugs gänzlich unbekannt ist), was bedeutet, dass alle Partikel die gleiche Wahrscheinlichkeit aufweisen, die korrekte Position darzustellen.}
+
+  \item{Währrend sich das Fahrzeug bewegt, schickt es laufend Daten wie Geschwindigkeit und Winkel an den Fahrzeugcomputer. Jeder Partikel wird nun um dieselbe Distanz und in dieselbe Richtung wie das Fahrzeug bewegt, dieser Schritt nennt sich \textit{Prognose-Schritt}}
+
+  \item{Nun kommt der \textit{Vermessungsschritt}. Das Fahrzeug benutzt seine \acs{Lidar}-Scanner}, um die Distanzen zu den auf der Karte notierten markanten Punkten, zu vermessen. Jetzt werden für jeden Partikel ebenfalls die Distanzen zwischen dem Partikel und den markanten Punkten vermessen und anschließend mit den Vermessungen des Fahrzeugs verglichen. Partikel, die sich näher am Fahrzeug befinden, bekommen eine höhere Gewichtung zugewiesen.
+
+  \item{Partikel, die unter eine gewisse Wahrscheinlichkeitsschwelle fallen, werden nun gelöscht und der Prozess ab Schritt 2 wird wiederholt.}
+\end{enumerate}
+\vgl{particle-filter}
+
+Bei einer weiterer Möglichkeit, Fahrzeuge präzise zu lokalisieren, scannen \acs{Lidar}-Sensoren Straßenmarkierungen, indem sie die Straßenoberfläche auf unterschiedliche Reflexionsvermögen (aufgrund weißer Markierungen) untersuchen und speichern die Daten in einer Datei namens \acs{BLMR} (\acl{BLMR}). In der \acs{BLMR} werden stets die Leit- und Randliniendaten der letzten \SI{240}{\meter} gespeichert, diese werden laufend mit den zuvor erstellten annotierten digitalen Karten (siehe \ref{maps}) abgeglichen, wodurch der Standort bestimmt werden kann. \vgl{self-localization}
 
 Sind keine Straßenmarkierungen vorhanden, können sich die Sensoren automatisch an anderen markanten Punkten wie Straßenschildern, Ampelanlagen, Gebäuden oder Bäumen, orientieren. Wichtig ist nur, dass es sich bei den Objekten um Dinge handelt, deren Standort sich nicht ändert und die eindeutig für \acs{Lidar}-Sensoren erkennbar sind.
 
