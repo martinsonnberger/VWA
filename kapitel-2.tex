@@ -8,7 +8,7 @@ Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich sel
 Das wohl bekannteste heute eingesetzte Ortungssystem, welches auf Satellitenortung basiert, ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit bei einer \ac{GPS}-Ortung liegt bei einigen Metern, durch diverse Erweiterungssysteme kann die Genauigkeit auf 1-3 \si{\meter} verbessert werden.
 \vgl{Winner}
 
-Das russische GLONASS und das europäische Galileo-Projekt sind zwei weitere satellitenbasierte Ortungssysteme. Ein wichtiger Vorteil dieser beiden Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
+Das russische GLONASS und das europäische Galileo-Projekt sind zwei weitere satellitenbasierte Ortungssysteme. Ein wichtiger Vorteil dieser beiden zusätzlichen Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
 \vgl{Hilty}
 
 \subsection{Berechnung des Standortes}
@@ -17,16 +17,16 @@ Die Positionsbestimmung erfolgt bei \ac{GPS} durch Entfernungsmessung zu mehrere
 
 Die Entfernungsmessung geschieht durch Messung der Laufzeit des Signals (\dH die Zeit, die das Signal für die Wegstrecke zwischen Sender und Empfänger benötigt). Das Signal breitet sich mit Lichtgeschwindigkeit aus, dadurch lässt sich die Distanz zum Satelliten berechnen.
 
-Allerdings ist dem Empfänger zunächst nicht bekannt, wann das Signal den Sender verlassen hat. Da Sender und Empfänger bei \ac{GPS} nicht direkt miteinander kommunizieren können, spricht man von einer Einweg-Entfernungsmessung. Der Satellit schickt die Sendezeit des Signals als Code mit, nämlich als \ac{GPS}-Systemzeit im Moment der Sendung. Da der Empfänger allerdings nicht mit der \ac{GPS}-Systemzeit synchronisiert ist, entsteht eine zusätzliche vierte Unbekannte, wodurch eine vierte Gleichung und somit ein vierter Satellit notwendig ist.
+Allerdings ist dem Empfänger zunächst nicht bekannt, wann das Signal den Sender verlassen hat. Da Sender und Empfänger bei \ac{GPS} nicht direkt miteinander kommunizieren können, spricht man von einer Einweg-Entfernungsmessung. Der Satellit schickt die Sendezeit des Signals als Code mit, nämlich als \ac{GPS}-Systemzeit im Moment der Sendung. Da der Empfänger allerdings nicht mit der \ac{GPS}-Systemzeit synchronisiert ist, entsteht eine zusätzliche vierte Unbekannte, nämlich die Differenz zwischen \ac{GPS}-Systemzeit und der Zeit des Empfängers. Dadurch ist eine vierte Gleichung und somit ein vierter Satellit notwendig.
 
 Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. Die Gleichungen ergeben sich durch Gleichsetzung der vier Entfernungen in Koordinaten und den Distanzen aus der Laufzeitmessung. Um keine Wurzeln zu benötigen, schreibt man die Gleichungen in Quadratform.
 \vgl{wiki-gps}
-\begin{align}
+\begin{gather}
   (x_1 - x_0)^2 + (y_1 - y_0)^2 + (z_1 - z_0)^2 = [c(t_1 - t_0)]^2 \\
   (x_2 - x_0)^2 + (y_2 - y_0)^2 + (z_2 - z_0)^2 = [c(t_2 - t_0)]^2 \\
   (x_3 - x_0)^2 + (y_3 - y_0)^2 + (z_3 - z_0)^2 = [c(t_3 - t_0)]^2 \\
   (x_4 - x_0)^2 + (y_4 - y_0)^2 + (z_4 - z_0)^2 = [c(t_4 - t_0)]^2
-\end{align}
+\end{gather}
 
 Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\). Diese kartesischen Koordinaten lassen sich mithilfe folgender Formeln in Koordinaten mit Längen- und Breitengrad umwandeln:
 \begin{align}
@@ -39,12 +39,12 @@ R = Erdradius
 
 \subsection{Verwendung in autonomen Fahrzeugen}
 
-Für autonome Fahrzeuge ist die \ac{GPS}-Ortung nur von relativ geringer Bedeutung, da deren Genauigkeit nicht für autonomes Fahren ausreichend ist. \ac{GPS} wird bei autonomen Fahrzeugen lediglich für eine erste grobe Schätzung des Standorts verwendet. Für eine genauere Ortung kommen \acs{Lidar}-Scanner, Kamerasysteme sowie \enq{Map-Matching} zum Einsatz.
+In autonomen Fahrzeuges wird die \ac{GPS}-Ortung aufgrund der nicht ausreichen Genauigkeit der Positionsbestimmung meist nur für eine erste Schätzung des Standorts eingesetzt. Um die bei autonomem Fahren erforderliche Genauigkeit auf wenige \si{\centi\meter} genau zu erreichen, werden andere Technologien wie \acs{Lidar} oder \acs{Radar} verwendet.
 
 
 \section{Lidar-Technik}
 
-\acs{Lidar}-Scanner (\acl{Lidar}) verwenden Laserstrahlen in einem für Menschen nicht sichtbaren Frequenzbereich, um die Umgebung von autonomen Fahrzeugen ständig zu überwachen. Dazu werden bis zu \num{150000} Impulse pro Sekunde ausgesendet, welche von Objekten reflektieren und anschließend vom \acs{Lidar}-Modul wieder empfangen werden. \vgl{lidar-radar} Mithilfe der gemessenen Laufzeit, die das Licht für die Strecke zum Objekt und wieder zurück benötigt hat, lässt sich die Distanz zum Objekt berechnen.
+\acs{Lidar}-Scanner (\acl{Lidar}) verwenden Laserstrahlen in einem für Menschen nicht sichtbaren Frequenzbereich, um die Umgebung von autonomen Fahrzeugen ständig zu überwachen. Dazu werden mehrere hunderttausend bis Millionen Impulse pro Sekunde ausgesendet, welche von Objekten reflektieren und anschließend vom \acs{Lidar}-Modul wieder empfangen werden. \vgl{lidar-radar} Mithilfe der gemessenen Laufzeit, die das Licht für die Strecke zum Objekt und wieder zurück benötigt hat, lässt sich die Distanz zum Objekt berechnen.
 
 \begin{equation}
   Distanz = \frac{Laufzeit \cdot Lichtgeschwindigkeit}{2}
@@ -52,6 +52,7 @@ Für autonome Fahrzeuge ist die \ac{GPS}-Ortung nur von relativ geringer Bedeutu
 \vspace{0.3cm}
 
 Zur Positionsbestimmung werden meist \acs{Lidar}-Systeme einem \acs{Radar} vorgezogen, da sie eine höhere Auflösung besitzen und damit detailliertere Abbildungen der Umgebung erstellen können, wie in \ref{lidar-radar} zu sehen ist. Eine Ausnahme stellt Tesla mit seinem \enq{Autopilot} dar, dazu mehr in \ref{section-2-3}.
+\vgl{lidar-radar}
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{lidar-radar.png}
@@ -74,7 +75,7 @@ In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alp
 
 \subsection{Partikel-Filter}
 
-Eine Möglichkeit, um mittles \acs{Lidar}-Scannern, die Position von Fahrzeugen bestimmen zu können, ist mittels Partikel-Filtern (auch Monte-Carlo-Lokalisierung). Hierfür wird ebenfalls eine annotierte digitale Karte (siehe \ref{maps}) benötigt.
+Eine Möglichkeit, um mittles \acs{Lidar}-Scannern die Position von Fahrzeugen bestimmen zu können, ist mittels Partikel-Filtern (auch Monte-Carlo-Lokalisierung). Hierfür wird auch eine annotierte digitale Karte (siehe \ref{maps}) benötigt, um vermessene Punkte mit den auf der Karte gespeicherten Objekten zu vergleichen.
 
 \begin{enumerate}
   \item{Zuerst werden auf der Karte eine hohe Anzahl an sogenannten Partikeln verteilt. Jeder Partikel stellt eine mögliche Position des Fahrzeugs dar. Anfangs erhalten alle Partikel dieselbe Gewichtung (da die Position des Fahrzeugs gänzlich unbekannt ist), was bedeutet, dass alle Partikel die gleiche Wahrscheinlichkeit aufweisen, die korrekte Position darzustellen.}
@@ -85,6 +86,8 @@ Eine Möglichkeit, um mittles \acs{Lidar}-Scannern, die Position von Fahrzeugen 
 
   \item{Partikel, die unter eine gewisse Wahrscheinlichkeitsschwelle fallen, werden nun gelöscht und der Prozess ab Schritt 2 wird wiederholt.}
 \end{enumerate}
+
+Durch die ständige Wiederholung dieser Schritte ist es dem Fahrzeugcomputer möglich, dauerhaft die akurate Position des Fahrzeugs zu berechnen.
 \vgl{particle-filter}
 
 \subsection{BLMR-Methode}
@@ -97,12 +100,13 @@ Auch bei dieser Methode können sich die Sensoren automatisch an anderen markant
 
 Trotz der Vorteile wie der hohen Genauigkeit oder auch großen Reichweite haben auch \acs{Lidar}-Scanner Nachteile. Einer davon ist der Preis, besonders Geräte für große Distanzen sind teuer, da hierfür Laser mit \SI{1550}{\nano\meter} Wellenlänge benötigt werden, um für Menschen nicht schädlich zu sein. Um solche Laserstrahlen wiederum empfangen zu können, sind Empfänger aus \ac{InGaAs} notwendig, da Siliziumempfänger, welche um ein Vielfaches günstiger als \ac{InGaAs} sind, keine Laserstrahlen mit \SI{1550}{\nano\meter} erkennen können. \vgl{wired} Durch jahrelange Entwicklung und ständig steigenden Produktionszahlen hat es Waymo mittlerweile geschafft, die Kosten für einen \acs{Lidar}-Scanner von \$\,\num{75000} um 90\,\% auf \$\,\num{7500} zu reduzieren. \vgl{waymo-medium}
 
-Ein weiterer Nachteil ist die Abhängigkeit von gutem Wetter. Schnee, Regen oder Nebel reflektieren das Licht, was zur Folge hat, dass das Fahrzeug fälschlicherweise Hindernisse erkennt, welche in Wirklichkeit nur Regentropfen oder Schneeflocken sind. Dieser Bereich unterliegt aktuell noch weiteren Forschungen, Ford hat jedoch schon einen Algorithmus entwickelt, der dieses Problem beheben soll. Dabei werden die empfangenen Laserstrahlen genau auf ihre Eigenschaften untersucht, etwa ob sich ein Objekt, von welchem der Laser reflektiert wird, zweimal an der selben Stelle befindet, was bei Regentropfen nicht der Fall ist. \vgl{ford-qz}
+Ein weiterer Nachteil ist die Abhängigkeit von gutem Wetter. Schnee, Regen oder Nebel reflektieren das Licht, was zur Folge hat, dass das Fahrzeug fälschlicherweise Hindernisse erkennt, welche in Wirklichkeit nur Regentropfen oder Schneeflocken sind. Dieser Bereich unterliegt aktuell noch weiteren Forschungen, Ford hat jedoch schon einen Algorithmus entwickelt, der dieses Problem beheben soll. Dabei werden die empfangenen Laserstrahlen genau auf ihre Eigenschaften untersucht, etwa ob sich ein Objekt, von welchem der Laser reflektiert wird, zweimal an der selben Stelle befindet, was bei Regentropfen nicht der Fall ist.
+\vgl{ford-qz}
 
 
 \section{Positionsbestimmung ohne Lidar am Beispiel von Tesla}\label{section-2-3}
 
-Anhand Tesla's Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt sich sehen, dass eine präzise Positionsbestimmung auch ohne \acs{Lidar}, sondern nur mit einer Kombination aus Ultraschallsensoren, Kameras und einem \acs{Radar}, möglich ist. Tesla's Autopilot 2.0 Hardware, mit der autonomes Fahren auf \ac{SAE}-Level 5 möglich sein soll, beinhaltet zwölf Ultraschallsensoren, acht Kameras sowie einen \acs{Radar} (siehe \ref{autopilot-hardware}).
+Anhand Tesla's Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt sich sehen, dass eine präzise Positionsbestimmung auch ohne \acs{Lidar}, sondern nur mit einer Kombination aus Ultraschallsensoren, Kameras und einem \acs{Radar}, möglich ist. Tesla's aktuelle Autopilot 2.0 Hardware, mit der autonomes Fahren auf \ac{SAE}-Level 5 möglich sein soll, beinhaltet zwölf Ultraschallsensoren, acht Kameras sowie einen \acs{Radar} (siehe \ref{autopilot-hardware}).
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{autopilot-hardware.png}
@@ -110,10 +114,10 @@ Anhand Tesla's Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt si
   \label{autopilot-hardware}
 \end{figure}
 
-\noindent Elon Musk, CEO von Tesla, sagte in einem Konferanzanruf mit der Presse 2016: \zit{elon-musk}{In fact, an additional level of sophistication – we are confident that we can use the radar to look beyond the car in front of you by bouncing the radar signal off the road and around the car. \elp{}
+\noindent Elon Musk, CEO von Tesla, sagte in einem Konferanzanruf mit der Presse 2016: \zit{elon-musk}{We are confident that we can use the radar to look beyond the car in front of you by bouncing the radar signal off the road and around the car. \elp{}
 So even if there’s something that was obscured directly both in vision and radar, we can use the bounce effect of the radar to look in front of that car and still brake.
 It takes things to another level of safety.}
 
-Mikrowellen ist es im Gegensatz zu Licht möglich, vom Boden zurückzuprallen. Dieser Umstand ermöglicht dem \acs{Radar}, unter einem vorherfahrenden Fahrzeug hindurch zu sehen und Gefahrensituationen frühzeitig zu erkennen, wodurch Notbremsmanöver rechtzeitig eingeleitet werden können. \vgl{ars-technica}
+Mikrowellen eines \acs{Radar} ist es im Gegensatz zu Licht möglich, vom Boden zurückzuprallen. Dieser Umstand ermöglicht dem \acs{Radar}, unter einem vorherfahrenden Fahrzeug hindurch zu sehen und Gefahrensituationen frühzeitig zu erkennen, wodurch eventuell notwendige Notbremsmanöver rechtzeitig eingeleitet werden können. \vgl{ars-technica}
 
 Außerdem verbaut Tesla in seinen Fahrzeugen keine \acs{Lidar}-Systeme, weil das Problem der Reflexion bei Regen, Nebel und Schneefall nicht besteht. Mikrowellen, wie die des \acs{Radar}, können diese Niederschläge durchdringen, wodurch keine fehlerhaften Erkennungen von Objekten entstehen, die gar nicht existieren. \vgl{ars-technica}
