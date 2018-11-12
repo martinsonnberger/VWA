@@ -39,7 +39,13 @@ R = Erdradius
 
 \subsection{Verwendung in autonomen Fahrzeugen}
 
-In autonomen Fahrzeuges wird die \ac{GPS}-Ortung aufgrund der nicht ausreichen Genauigkeit der Positionsbestimmung meist nur für eine erste Schätzung des Standorts eingesetzt. Um die bei autonomem Fahren erforderliche Genauigkeit auf wenige \si{\centi\meter} genau zu erreichen, werden andere Technologien wie \acs{Lidar} oder \acs{Radar} verwendet.
+In autonomen Fahrzeuges reicht eine reine \ac{GPS}-Ortung aufgrund der nicht ausreichen Genauigkeit der Positionsbestimmung nicht aus. Um die bei autonomem Fahren erforderliche Genauigkeit auf wenige \si{\centi\meter} genau zu erreichen, wird eine \ac{IMU} mit \ac{GPS} kombiniert.
+
+\subsubsection{\acl{IMU}}
+
+Eine \ac{IMU}, zu deutsch inertiale Messeinheit, ist ein elektronisches System, das drei Beschleunigungssensoren sowie drei Gyroskope benutzt, um die translatorischen Beschleunigungskräfte und die Winkelgeschwindigkeiten der x- bzw. y- bzw. z-Achse, zu bestimmen. \vgl{imu-def}
+
+Kombiniert man nun die Daten einer \ac{IMU} mit denen von einer \ac{GPS}-Ortung, so kann die \ac{IMU} Schwächen des \ac{GPS}, beispielsweise in Tunneln oder durch Signalabschattungen durch Bäume oder Hochhäuser, kompensieren. Nach einiger Zeit weicht jedoch aufrund von Driftfehlern auch die \ac{IMU} von der tatsächlichen Position des Fahrzeugs ab. \vgl{imu-def}
 
 
 \section{Lidar-Technik}
@@ -98,7 +104,7 @@ Auch bei dieser Methode können sich die Sensoren automatisch an anderen markant
 
 \subsection*{Nachteile von Lidar}
 
-Trotz der Vorteile wie der hohen Genauigkeit oder auch großen Reichweite haben auch \acs{Lidar}-Scanner Nachteile. Einer davon ist der Preis, besonders Geräte für große Distanzen sind teuer, da hierfür Laser mit \SI{1550}{\nano\meter} Wellenlänge benötigt werden, um für Menschen nicht schädlich zu sein. Um solche Laserstrahlen wiederum empfangen zu können, sind Empfänger aus \ac{InGaAs} notwendig, da Siliziumempfänger, welche um ein Vielfaches günstiger als \ac{InGaAs} sind, keine Laserstrahlen mit \SI{1550}{\nano\meter} erkennen können. \vgl{wired} Durch jahrelange Entwicklung und ständig steigenden Produktionszahlen hat es Waymo mittlerweile geschafft, die Kosten für einen \acs{Lidar}-Scanner von \$\,\num{75000} um 90\,\% auf \$\,\num{7500} zu reduzieren. \vgl{waymo-medium}
+Trotz der Vorteile wie der hohen Genauigkeit oder auch großen Reichweite haben auch \acs{Lidar}-Scanner Nachteile. Einer davon ist der Preis, besonders Geräte für große Distanzen sind teuer, da hierfür Laser mit einer Wellenlänge von \vgl{imu-def}\SI{1550}{\nano\meter} benötigt werden, um für Menschen nicht schädlich zu sein. Um solche Laserstrahlen wiederum empfangen zu können, sind Empfänger aus \ac{InGaAs} notwendig, da Siliziumempfänger, welche um ein Vielfaches günstiger als solche aus \ac{InGaAs} sind, keine Laserstrahlen mit \SI{1550}{\nano\meter} Wellenlänge erkennen können. \vgl{wired} Durch jahrelange Entwicklung und ständig steigenden Produktionszahlen hat es Waymo mittlerweile geschafft, die Kosten für einen \acs{Lidar}-Scanner von \$\,\num{75000} um 90\,\% auf \$\,\num{7500} zu reduzieren. \vgl{waymo-medium}
 
 Ein weiterer Nachteil ist die Abhängigkeit von gutem Wetter. Schnee, Regen oder Nebel reflektieren das Licht, was zur Folge hat, dass das Fahrzeug fälschlicherweise Hindernisse erkennt, welche in Wirklichkeit nur Regentropfen oder Schneeflocken sind. Dieser Bereich unterliegt aktuell noch weiteren Forschungen, Ford hat jedoch schon einen Algorithmus entwickelt, der dieses Problem beheben soll. Dabei werden die empfangenen Laserstrahlen genau auf ihre Eigenschaften untersucht, etwa ob sich ein Objekt, von welchem der Laser reflektiert wird, zweimal an der selben Stelle befindet, was bei Regentropfen nicht der Fall ist.
 \vgl{ford-qz}
@@ -106,7 +112,7 @@ Ein weiterer Nachteil ist die Abhängigkeit von gutem Wetter. Schnee, Regen oder
 
 \section{Positionsbestimmung ohne Lidar am Beispiel von Tesla}\label{section-2-3}
 
-Anhand Tesla's Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt sich sehen, dass eine präzise Positionsbestimmung auch ohne \acs{Lidar}, sondern nur mit einer Kombination aus Ultraschallsensoren, Kameras und einem \acs{Radar}, möglich ist. Tesla's aktuelle Autopilot 2.0 Hardware, mit der autonomes Fahren auf \ac{SAE}-Level 5 möglich sein soll, umfasst zwölf Ultraschallsensoren, acht Kameras sowie einen \acs{Radar} (siehe \ref{autopilot-hardware}).
+Anhand Teslas Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt sich sehen, dass eine präzise Positionsbestimmung auch ohne \acs{Lidar}, sondern nur mit einer Kombination aus Ultraschallsensoren, Kameras und einem \acs{Radar}, möglich ist. Teslas aktuelle Autopilot 2.0 Hardware, mit der autonomes Fahren auf \ac{SAE}-Level 5 möglich sein soll, umfasst zwölf Ultraschallsensoren, acht Kameras sowie einen \acs{Radar} (siehe \ref{autopilot-hardware}).
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{autopilot-hardware.png}
