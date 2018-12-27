@@ -5,10 +5,10 @@ Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich sel
 
 \section{Satellitenortung}
 
-Das wohl bekannteste heute eingesetzte Ortungssystem, welches auf Satellitenortung basiert, ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit bei einer \ac{GPS}-Ortung liegt bei einigen Metern, durch diverse Erweiterungssysteme kann die Genauigkeit auf 1-3 \si{\meter} verbessert werden.
+Satelitenbasierten Ortungs- und Navigationssystemen werden \ac{GNSS} genannt. Das wohl bekannteste heute eingesetzte \ac{GNSS} ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird. \vgl{Hilty} In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit einer \ac{GPS}-Ortung liegt bei einigen Metern, durch diverse Erweiterungssysteme kann die Genauigkeit auf 1-3 \si{\meter} verbessert werden.
 \vgl{Winner}
 
-Das russische GLONASS und das europäische Galileo-Projekt sind zwei weitere satellitenbasierte Ortungssysteme. Ein wichtiger Vorteil dieser beiden zusätzlichen Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
+Das russische GLONASS, das europäische Galileo-Projekt und das chinesiche Bediou sind \ac{GNSS}. Ein wichtiger Vorteil dieser zusätzlichen Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
 \vgl{Hilty}
 
 \subsection{Berechnung des Standortes}
@@ -66,7 +66,7 @@ Zur Positionsbestimmung werden meist \acs{Lidar}-Systeme einem \acs{Radar} vorge
   \label{lidar-radar}
 \end{figure}
 
-In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alphabet, sind drei \acs{Lidar}-Scanner auf dem Dach der Fahrzeuge verbaut (siehe \ref{waymo-lidar}). Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse pro Sekunde aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen. \vgl{waymo} In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt:
+In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alphabet, sind drei \acs{Lidar}-Scanner auf dem Dach der Fahrzeuge verbaut (siehe \ref{waymo-lidar}). Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse pro Sekunde aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen. \vgl{waymo-lidar} In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt:
 \begin{enumerate}
   \item{Erkennung und Bestimmung von Objekten um das Fahrzeug}
   \item{Präzise Positionsbestimmung innerhalb der Fahrspur}
@@ -75,7 +75,7 @@ In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alp
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{waymo-lidar.png}
-  \captionbelow[Lidar-Scanner auf einem autonomen Fahrzeug von Waymo]{Lidar-Scanner auf einem autonomen Fahrzeug von Waymo. (\cite{waymo})}
+  \captionbelow[Lidar-Scanner auf einem autonomen Fahrzeug von Waymo]{Lidar-Scanner auf einem autonomen Fahrzeug von Waymo. (\cite{waymo-lidar})}
   \label{waymo-lidar}
 \end{figure}
 
