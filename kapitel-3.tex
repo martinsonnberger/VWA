@@ -1,6 +1,7 @@
 \chapter{Aktueller Entwicklungsstand}
 
-Dieses Kapitel soll einen Überblick über derzeitige Projekte schaffen, die es sich zur Aufgabe gemacht haben, autonomes Fahren weltweit auf die Straßen zu bringen.
+Dieses Kapitel soll einen Überblick über die aktuellen Entwicklungen im Bereich der Technologien, die für autonomes Fahren, speziell für die Positionsbestimmung, benötigt werden, vermitteln. Außerdem werden einige Projekte behandelt, die es sich zur auf Aufgabe gemacht haben, autonomes Fahren auf die weltweiten Straßen zu bringen.
+
 
 \section{\acs{Lidar}-Entwicklung}
 
@@ -13,7 +14,7 @@ Derzeit bietet Ouster seinen \acs{Lidar}-Scanner \emph{OS-1} in drei verschieden
 
 Auf der jährlich in Las Vegas stattfindenden Consumer Electronics Show (CES) hat Nvidia, ein Unternehmen, welches eigentlich für High-End Grafikkarten bekannt ist, im Jänner 2019 eine offene Plattform namens \emph{Nvidia DRIVE Localization} vorgestellt. Das System basiert auf Nvidias hauseigenem, speziell für autonomes Fahren etwickelten Prozessor \emph{Nvidia DRIVE Xavier}, bei dem es sich um einen sogenannten \ac{SoC} handelt, welcher einen Deep Learning Accelerator und eine CUDA-Engine\footnote{\zit{cuda}{CUDA ist eine NVIDIA Architektur für parallele Berechnungen, die die Rechenleistung des Systems durch Nutzung der Leistung des Grafikprozessors deutlich steigern kann.}} beinhaltet. \vgl{nvidia-drive}
 
-Das System kommt dabei ohne jegliche \acs{Lidar}- oder \acs{Radar}-Scanner aus, es greift lediglich auf ein \ac{GNSS}, eine \ac{IMU} und den Tachometer des Fahrzeugs zurück. Neurale Netzte analysieren die Daten in Echtzeit und können verschiedenste Straßenmerkmale selbst in schlechten Wetterbedingungen auslesen. Diese Anforderungen können nur durch ernorme parallele Recheleistung, welche vom Xavier \ac{SoC} zur Verfügung gestellt wird, bewältigt werden.
+Das System kommt dabei ohne jegliche \acs{Lidar}- oder \acs{Radar}-Scanner aus, es greift lediglich auf ein \ac{GNSS}, eine \ac{IMU} und den Tachometer des Fahrzeugs zurück. Neurale Netzte analysieren die Daten in Echtzeit und können verschiedenste Straßenmerkmale selbst in schlechten Wetterbedingungen auslesen. Diese Anforderungen können nur durch ernorme parallele Recheleistung, welche vom Xavier \ac{SoC} zur Verfügung gestellt wird, bewältigt werden. \vgl{nvidia-drive}
 
 
 \section{Waymo}
@@ -23,6 +24,14 @@ Waymo ist ein Schwesterunternehmen von Google und führt das im Jahr 2009 gegrü
 Am 5.\ Dezember 2018 startete Waymo ein kommerzielles Taxi-Service namens \emph{Waymo One} in vier Vororten von Phoenix, Arizona. Die autonomen Fahrzeuge werden derzeit noch von einem \enq{Sicherheitsfahrer} begleitet, der im Fall einer Fehlfunktion der autonomen Systeme, die Kontrolle über das Fahrzeug übernehmen kann.
 \vgls{waymo-taxiservice} Bereits seit 2017 bis zum Start von \emph{Waymo One} lief das sogenannte \emph{Early rider program}, an dem ausgewählte Bewohner des Ballungsraums von Phoenix teilnehmen konnten, um kostenlose Taxifahrten zu erhalten. Das Feedback der Teilnehmer trug zur Weiterentwicklung der autonomen Fahrzeuge bei.
 \vgl{waymo-website}
+
+
+\section{Uber}
+
+Auch der Fahrtendienst Uber hat im Februar 2015 bekanntgegeben, eine Flotte an autonomen Fahrzeugen aufzubauen um diese für Testfahrten zu benützten. Nach ersten Tests ist Pittsburgh, die jedoch nach einiger Zeit aufgrund von Differenzen mit dem Bürgemeister der Stadt nach San Francisco verlegt wurden. Seit 2017 finden auch, ebenso wie bei Waymo, Tesfahrten im benachbarten Arizona statt. \vgl{uber-tech-radar}
+
+Bei einem Unfall im März 2017 in Tempe, Arizona wurde eine Frau von einem selbstfahrenden Uber-Fahrzeug, einem Volvo XC90, erfasst und dabei tödlich verletzt. Die Frau schob ihr Fahrrad über die vierspurige Straße, trotz Dunkelheit wurde sie aber von den zahlreichen Sensoren des Fahrzeug bereits sechs Sekunden vor dem Unfall erkannt. Das System war aber verwirrt, zuerst erkannte es die Frau als unbekanntes Objekt, dann als Fahrzeug und zuletzt als Fahrrad, dessen Pfad es nicht vorhersagen konnte. Nur 1,3 Sekunden vor dem Zusammenstoß erkannte das System, dass eine Notbremsung nötig war, führte diese jedoch nicht durch, da das automatische Notbremssystem deaktiviert war. Der Sicherheitsfahrer, der gerade auf einen Bildschirm des autonomen Systems schaute, konnte nicht mehr rechtzeitig Bremsen, wodurch das Fahrzeug ungebremst mit ungefähr \SI[per-mode=symbol]{60}{\kilo\metre\per\hour} auf das Opfer zufuhr. Nach dem Unfall wurden alle autonomen Testfahrten von Uber vorläufig eingestellt, nach rund einem Jahr wurden die Tests wieder fortgeführt.
+\vgl{uber-unfall}
 
 
 \section{Tesla}
