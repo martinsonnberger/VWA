@@ -79,7 +79,7 @@
 \DeclareTristateOption[false]{ohneVgl}
 \DeclareTristateOption[false]{ohneS}
 % Auslassungen in Zitaten in runden Klammern. (\ldots)
-\DeclareTristateOption[false]{rundeauslassung} 
+\DeclareTristateOption[false]{rundeauslassung}
 \DeclareTristateOption[true]{inreferencehack}
 \DeclareTristateComplementaryOption{noinreferencehack}{inreferencehack}
 \DeclareTristateOption[false]{vornamevorne}
@@ -163,7 +163,7 @@
 \RequirePackage{placeins}
 \expandafter\setcapindent\expandafter{\vwa@capindent}
 \RequirePackage[T1]{fontenc} 			% Moderne Schriftkodierung
-\RequirePackage[\vwa@language]{babel} 	% Sprache: Deutsch
+\RequirePackage[greek,naustrian]{babel} 	% Sprache: Deutsch
 \RequirePackage[utf8]{inputenc}	    	% Zeichenkodierung der Eingabedatei.
 % Wähle die Schriftfamilie Latin Modern
 \RequirePackage{lmodern}
@@ -356,11 +356,11 @@
 % <vwa>
 \DeclareMultiCiteCommand{\quotecite}
   [\cbx@qcwrapper\relax\relax]
-  {\cbx@quotecite} 
+  {\cbx@quotecite}
   {\cbx@qcdelim}
 \DeclareMultiCiteCommand{\fullquotecite}
   [\cbx@qcwrapper\cbx@mkfullquote\relax]
-  {\cbx@quotecite} 
+  {\cbx@quotecite}
   {\cbx@qcdelim}
 \DeclareMultiCiteCommand{\parenquotecite}
   [\cbx@qcwrapper\relax\mkbibparensbrackets]
@@ -384,8 +384,8 @@
 % from musuos.cbx
 % <musuos>
 \DeclareMultiCiteCommand{\autoquotecite}
-  [\cbx@qcwrapper\relax\mkbibautoformat] 
-  {\cbx@quotecite} 
+  [\cbx@qcwrapper\relax\mkbibautoformat]
+  {\cbx@quotecite}
   {\cbx@qcdelim}
 \DeclareMultiCiteCommand{\fullautoquotecite}
   [\cbx@qcwrapper\cbx@mkfullquote\mkbibautoformat]
@@ -419,7 +419,7 @@
 \DeclareMultiCiteCommand{\plainquotecite}
   [\cbx@qcwrapper\relax\relax]
   {\cbx@quotecite}
-  {\cbx@qcdelim}    
+  {\cbx@qcdelim}
 
 % Use first argument to override trackers, second to format
 % the citation (e.g. \mkbibfootnote). The third is reserved
@@ -551,7 +551,7 @@
   \usepackage[automark]{scrlayer-scrpage}
   % \lohead[Anna Bolika]{}
   % \rohead[Wie man seine VWA in \LaTeX{} schreibt]{}
-  % Die folgende Zeile verschiebt die Seitennummern nach rechts. 
+  % Die folgende Zeile verschiebt die Seitennummern nach rechts.
   \cfoot*{}\ofoot*{\pagemark}
   %\automark{chapter}
   \pagestyle{scrheadings}
@@ -595,27 +595,27 @@
 % \DeclareQuoteStyle[italic]{german}[\itshape][]%
 % 	{}{\/}%
 % 	{\quotedblbase}{\textquotedblleft\/}%
-% 
+%
 % \DeclareQuoteStyle[italicquotes]{german}[\itshape][]%
 % 	{\quotedblbase}{\textquotedblleft\/}%
 % 	{\quotesinglbase}{\textquoteleft}%
-% 
+%
 % \DeclareQuoteStyle[italic]{british}[\itshape][]%
 % 	{}{\/}%
 % 	{\textquoteleft}{\textquoteright\/}%
-% 
+%
 % \DeclareQuoteStyle[italicquotes]{british}[\itshape][]%
 % 	{\textquoteleft}{\textquoteright\/}%
 % 	{\textquotedblleft}{\textquotedblright}%
-% 
+%
 % \DeclareQuoteStyle[italic]{american}[\itshape][]%
 % 	{}{\/}%
 % 	{\textquotedblleft}{\textquotedblright}%
-% 
+%
 % \DeclareQuoteStyle[italicquotes]{american}[\itshape][]%
 % 	{\textquotedblleft}{\textquotedblright\/}%
 % 	{\textquoteleft}{\textquoteright}%
-% 
+%
 % \ifvwa@italicquotes%
 % 	\ifvwa@quotes%
 % 		\def\vwa@do#1#2{\DeclareQuoteAlias[italicquotes]{#1}{#2}}
@@ -633,7 +633,7 @@
 % 	\vwa@do{british}{UKenglish}
 % 	\vwa@do{american}{american}
 % 	\vwa@do{american}{canadian}
-% 	\vwa@do{american}{USenglish}		
+% 	\vwa@do{american}{USenglish}
 % \fi
 % \fi
 
@@ -747,7 +747,7 @@
 \RedeclareSectionCommand[
   beforeskip=-.5\baselineskip,
   afterskip=-1em]{subparagraph}
-\fi  
+\fi
 
 \RequirePackage[defaultlines=\vwa@widowlines,all]{nowidow}
 
