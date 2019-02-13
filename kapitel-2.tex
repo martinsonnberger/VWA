@@ -1,14 +1,14 @@
 \chapter{Positionsbestimmung}\label{kapitel-2}
 
-Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich selbst in unterschiedlichsten Verkehrssituationen auf wenige \si{\centi\meter} genau zu lokalisieren. Gerade im Verkehr ist eine besonders hohe Genauigkeit gefragt, eine ungefähre Standortbestimmung ist für autonome Fahrzeuge definitiv nicht ausreichend.
+Dieses Kapitel behandelt die Frage, wie es autonome Fahrzeuge schaffen, sich selbst in unterschiedlichsten Verkehrssituationen auf wenige Zentimeter genau zu lokalisieren. Gerade im Verkehr ist eine besonders hohe Genauigkeit gefragt, eine ungefähre Standortbestimmung wie man sie von Navigationssystemen kennt, ist für autonome Fahrzeuge definitiv nicht ausreichend.
 
 
 \section{Satellitenortung}
 
-Satelitenbasierten Ortungs- und Navigationssystemen werden \ac{GNSS} genannt. Das wohl bekannteste heute eingesetzte \ac{GNSS} ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird \vgl{Hilty}{}. In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit einer \ac{GPS}-Ortung liegt bei einigen Metern, durch diverse Erweiterungssysteme kann die Genauigkeit auf 1-3 \si{\meter} verbessert werden.
+Satellitenbasierte Ortungs- und Navigationssysteme werden \ac{GNSS} genannt. Das wohl bekannteste heute eingesetzte \ac{GNSS} ist das \ac{GPS}, welches vom US-Verteidigungsministerium betrieben wird \vgl{Hilty}{}. In etwa \SI{20000}{\kilo\meter} Höhe umkreisen 31 Satelliten zweimal täglich die Erde und senden Funksignale aus, welche Informationen zu Position und Uhrzeit des Satelliten enthalten. Die Genauigkeit einer \ac{GPS}-Ortung liegt bei einigen Metern, durch diverse Erweiterungssysteme kann die Genauigkeit auf 1-3 \si{\meter} verbessert werden.
 \Vgl{Winner}
 
-Das russische GLONASS, das europäische Galileo-Projekt und das chinesiche Bediou sind \ac{GNSS}. Ein wichtiger Vorteil dieser zusätzlichen Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
+Das russische GLONASS, das europäische Galileo-Projekt und das chinesiche Bediou sind weitere \ac{GNSS}. Ein wichtiger Vorteil dieser zusätzlichen Systeme liegt darin, dass in Kombination mit \ac{GPS} und damit verbunden einer größeren Satellitenzahl, eine höhere Genauigkeit und Zuverlässigkeit der Ortung erreichbar ist.
 \Vgl{Hilty}
 
 \subsection{Berechnung des Standortes}
@@ -19,7 +19,7 @@ Die Entfernungsmessung geschieht durch Messung der Laufzeit des Signals (\dH die
 
 Allerdings ist dem Empfänger zunächst nicht bekannt, wann das Signal den Sender verlassen hat. Da Sender und Empfänger bei \ac{GPS} nicht direkt miteinander kommunizieren können, spricht man von einer Einweg-Entfernungsmessung. Der Satellit schickt die Sendezeit des Signals als Code mit, nämlich als \ac{GPS}-Systemzeit im Moment der Sendung. Da der Empfänger allerdings nicht mit der \ac{GPS}-Systemzeit synchronisiert ist, entsteht eine zusätzliche vierte Unbekannte, nämlich die Differenz zwischen \ac{GPS}-Systemzeit und der Zeit des Empfängers. Dadurch ist eine vierte Gleichung und somit ein vierter Satellit notwendig.
 
-Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. Die Gleichungen ergeben sich durch Gleichsetzung der vier Entfernungen in Koordinaten und den Distanzen aus der Laufzeitmessung. Um keine Wurzeln zu benötigen, schreibt man die Gleichungen in Quadratform.
+Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. Setzt man die vier Entfernungen der Satelliten in Koordinaten mit den Distanzen aus der Laufzeitmessung gleich, lässt sich das nötige Gleichungssystem aufstellen. Zur Vermeidung von Wurzeln werden die Gleichungen quadriert.
 \Vgl{Raschbauer}
 \begin{gather}
   (x_1 - x_0)^2 + (y_1 - y_0)^2 + (z_1 - z_0)^2 = [c(t_1 - t_0)]^2 \\
@@ -28,7 +28,7 @@ Zur Vereinfachung wird die Ausbreitungsgeschwindigkeit als konstant angenommen. 
   (x_4 - x_0)^2 + (y_4 - y_0)^2 + (z_4 - z_0)^2 = [c(t_4 - t_0)]^2
 \end{gather}
 
-Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\). Diese kartesischen Koordinaten lassen sich mithilfe folgender Formeln in Koordinaten mit Längen- und Breitengrad umwandeln:
+\noindent Löst man dieses Gleichungssystem erhält man die Werte für den Sendezeitpunkt \(t_0\) und die Koordinaten des Empfängers \(x_0, y_0, z_0\). Diese kartesischen Koordinaten sind Werte innerhalb eines dreidimensionalen Koordinatensystems dessen Ursprung im Erdmittelpunkt liegt. Mithilfe der folgenden Formeln lassen sie sich in für uns übliche Längen- und Breitengrade umwandeln:
 \begin{align}
   Breite &= \arcsin(\frac{z}{R}) \\
   Länge &= \arctantwo(y, x)
@@ -39,7 +39,7 @@ R = Distanz zur Erdoberfläche
 
 \subsection{Verwendung in autonomen Fahrzeugen}
 
-In autonomen Fahrzeuges reicht eine reine \ac{GPS}-Ortung aufgrund der nicht ausreichen Genauigkeit der Positionsbestimmung nicht aus. Um die bei autonomem Fahren erforderliche Genauigkeit auf wenige \si{\centi\meter} genau zu erreichen, wird eine \ac{IMU} mit \ac{GPS} kombiniert.
+In autonomen Fahrzeuges reicht eine reine \ac{GPS}-Ortung aufgrund der nicht ausreichen Genauigkeit der Positionsbestimmung nicht aus. Um der bei autonomem Fahren erforderliche Genauigkeit auf wenige Zentimeter näher zu kommen, wird eine \ac{IMU} mit \ac{GPS} kombiniert.
 
 \subsubsection{\acl{IMU}}
 
@@ -66,12 +66,11 @@ Zur Positionsbestimmung werden meist \acs{Lidar}-Systeme einem \acs{Radar} vorge
   \label{lidar-radar}
 \end{figure}
 
-In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alphabet, sind drei \acs{Lidar}-Scanner auf dem Dach der Fahrzeuge verbaut (siehe \ref{waymo-lidar}). Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse pro Sekunde aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen \vgl{waymo-lidar}{}. In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt:
+In den Fahrzeugen von Waymo, einem Schwesterkonzern von Google, sind drei \acs{Lidar}-Scanner auf dem Dach der Fahrzeuge verbaut (siehe \ref{waymo-lidar}). Dazu gehören ein Kurzstrecken-\acs{Lidar} für den unmittelbaren Bereich um das Fahrzeug, ein Langstrecken-\acs{Lidar}, der auch aus mehreren hundert Metern Entfernung und voller Geschwindigkeit feine Signale, wie Handbewegungen, erkennen kann, sowie einem hoch auflösenden \acs{Lidar}, welcher Millionen Laserimpulse pro Sekunde aussenden kann, um ein detailliertes Bild der Umwelt zu erzeugen \vgl{waymo-lidar}{}. In autonomen Fahrzeugen wird \acs{Lidar} hauptsächlich für zwei Aufgaben eingesetzt: \Vgl{Surden}
 \begin{enumerate}
   \item{Erkennung und Bestimmung von Objekten um das Fahrzeug}
   \item{Präzise Positionsbestimmung innerhalb der Fahrspur}
 \end{enumerate}
-\Vgl{Surden}
 
 \begin{figure}\centering
   \includegraphics[width=\textwidth]{waymo-lidar.png}
@@ -81,19 +80,19 @@ In den Fahrzeugen von Waymo, einem Tochterkonzern von Google's Mutterkonzern Alp
 
 \subsection{Partikel-Filter}
 
-Eine Möglichkeit, um mittles \acs{Lidar}-Scannern die Position von Fahrzeugen bestimmen zu können, ist mittels Partikel-Filtern (auch Monte-Carlo-Lokalisierung). Hierfür wird auch eine annotierte digitale Karte (siehe \ref{maps}) benötigt, um vermessene Punkte mit den auf der Karte gespeicherten Objekten zu vergleichen.
+Eine Möglichkeit, um mittles \acs{Lidar}-Scannern die Position von Fahrzeugen bestimmen zu können, ist mithilfe von Partikel-Filtern (auch Monte-Carlo-Lokalisierung). Hierfür wird auch eine annotierte digitale Karte (siehe \ref{maps}) benötigt, um vermessene Punkte mit den auf der Karte gespeicherten Objekten zu vergleichen.
 
 \begin{enumerate}
   \item{Zuerst werden auf der Karte eine hohe Anzahl an sogenannten Partikeln verteilt. Jeder Partikel stellt eine mögliche Position des Fahrzeugs dar. Anfangs erhalten alle Partikel dieselbe Gewichtung (da die Position des Fahrzeugs gänzlich unbekannt ist), was bedeutet, dass alle Partikel die gleiche Wahrscheinlichkeit aufweisen, die korrekte Position darzustellen.}
 
-  \item{Währrend sich das Fahrzeug bewegt, schickt es laufend Daten wie Geschwindigkeit und Winkel an den Fahrzeugcomputer. Jeder Partikel wird nun um dieselbe Distanz und in dieselbe Richtung wie das Fahrzeug bewegt, dieser Schritt nennt sich \emph{Prognose-Schritt}}.
+  \item{Währrend sich das Fahrzeug bewegt, schickt es laufend Daten wie Geschwindigkeit und Neigungswinkel an den Fahrzeugcomputer. Jeder Partikel wird nun um dieselbe Distanz und in dieselbe Richtung wie das Fahrzeug bewegt, dieser Schritt nennt sich \emph{Prognose-Schritt}}.
 
   \item{Nun kommt der \emph{Vermessungsschritt}. Das Fahrzeug benutzt seine \acs{Lidar}-Scanner}, um die Distanzen zu den auf der Karte notierten markanten Punkten, zu vermessen. Jetzt werden für jeden Partikel ebenfalls die Distanzen zwischen dem Partikel und den markanten Punkten vermessen und anschließend mit den Vermessungen des Fahrzeugs verglichen. Partikel, die sich näher am Fahrzeug befinden, bekommen eine höhere Gewichtung zugewiesen.
 
   \item{Partikel, die unter eine gewisse Wahrscheinlichkeitsschwelle fallen, werden nun gelöscht und der Prozess ab Schritt 2 wird wiederholt.}
 \end{enumerate}
 
-Durch die ständige Wiederholung dieser Schritte ist es dem Fahrzeugcomputer möglich, dauerhaft die akurate Position des Fahrzeugs zu berechnen.
+\noindent Durch die ständige Wiederholung dieser Schritte ist es dem Fahrzeugcomputer möglich, dauerhaft die akurate Position des Fahrzeugs zu berechnen.
 \Vgl{particle-filter}
 
 \subsection{BLMR-Methode}
@@ -104,7 +103,7 @@ Auch bei dieser Methode können sich die Sensoren automatisch an anderen markant
 
 \subsection{Nachteile von Lidar}
 
-Trotz der Vorteile wie der hohen Genauigkeit oder auch großen Reichweite haben auch \acs{Lidar}-Scanner Nachteile. Einer davon ist der Preis, besonders Geräte für große Distanzen sind teuer, da hierfür Laser mit einer Wellenlänge von \SI{1550}{\nano\meter} benötigt werden, um für Menschen nicht schädlich zu sein \vgl{imu-def}{}. Um solche Laserstrahlen wiederum empfangen zu können, sind Empfänger aus \ac{InGaAs} notwendig, da Siliziumempfänger, welche um ein Vielfaches günstiger als solche aus \ac{InGaAs} sind, keine Laserstrahlen mit \SI{1550}{\nano\meter} Wellenlänge erkennen können \vgl{wired}{}. Durch jahrelange Entwicklung und ständig steigenden Produktionszahlen hat es Waymo mittlerweile geschafft, die Kosten für einen \acs{Lidar}-Scanner von \num{75000} US-Dollar um 90\,\% auf \num{7500} US-Dollar zu reduzieren. \Vgl{waymo-medium}
+Trotz der Vorteile wie der hohen Genauigkeit oder auch großen Reichweite haben auch \acs{Lidar}-Scanner Nachteile. Einer davon ist der Preis, besonders Geräte für große Distanzen sind teuer, da hierfür Laser mit einer Wellenlänge von \SI{1550}{\nano\meter} benötigt werden, um für Menschen nicht schädlich zu sein \vgl{imu-def}{}. Um solche Laserstrahlen wiederum empfangen zu können, sind Empfänger aus \ac{InGaAs} notwendig, da Siliziumempfänger, welche um ein Vielfaches günstiger als solche aus \ac{InGaAs} sind, keine Laserstrahlen mit \SI{1550}{\nano\meter} Wellenlänge erkennen können \mbox{\vgl{wired}{}}. Durch jahrelange Entwicklung und ständig steigenden Produktionszahlen hat es Waymo mittlerweile geschafft, die Kosten für einen \acs{Lidar}-Scanner von \num{75000} US-Dollar um 90 Prozent auf \num{7500} US-Dollar zu reduzieren. \Vgl{waymo-medium}
 
 Ein weiterer Nachteil ist die Abhängigkeit von gutem Wetter. Schnee, Regen oder Nebel reflektieren das Licht, was zur Folge hat, dass das Fahrzeug fälschlicherweise Hindernisse erkennt, welche in Wirklichkeit nur Regentropfen oder Schneeflocken sind. Dieser Bereich unterliegt aktuell noch weiteren Forschungen, Ford hat jedoch schon einen Algorithmus entwickelt, der dieses Problem beheben soll. Dabei werden die empfangenen Laserstrahlen genau auf ihre Eigenschaften untersucht, etwa ob sich ein Objekt, von welchem der Laser reflektiert wird, zweimal an der selben Stelle befindet, was bei Regentropfen nicht der Fall ist.
 \Vgl{ford-qz}
@@ -124,6 +123,6 @@ Anhand Teslas Fahrerassistenzsystem, dem sogenannten \enq{Autopilot}, lässt sic
 So even if there’s something that was obscured directly both in vision and radar, we can use the bounce effect of the radar to look in front of that car and still brake.
 It takes things to another level of safety.}
 
-Mikrowellen eines \acs{Radar} ist es im Gegensatz zu Licht möglich, vom Boden zurückzuprallen. Dieser Umstand ermöglicht dem \acs{Radar}, unter einem vorherfahrenden Fahrzeug hindurch zu sehen und Gefahrensituationen frühzeitig zu erkennen, wodurch eventuell notwendige Notbremsmanöver rechtzeitig eingeleitet werden können. \Vgl{ars-technica}
+\noindent Mikrowellen eines \acs{Radar} ist es im Gegensatz zu Licht möglich, vom Boden zurückzuprallen. Dieser Umstand ermöglicht dem \acs{Radar}, unter einem vorherfahrenden Fahrzeug hindurch zu sehen und Gefahrensituationen frühzeitig zu erkennen, wodurch eventuell notwendige Notbremsmanöver rechtzeitig eingeleitet werden können. \Vgl{ars-technica}
 
 Außerdem baut Tesla in seinen Fahrzeugen keine \acs{Lidar}-Systeme ein, weil das Problem der Reflexion bei Regen, Nebel und Schneefall nicht besteht. Mikrowellen, wie die des \acs{Radar}, können diese Niederschläge durchdringen, wodurch keine fehlerhaften Erkennungen von Objekten entstehen, die gar nicht existieren. \Vgl{ars-technica}
